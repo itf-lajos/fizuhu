@@ -1,7 +1,7 @@
 import Axios from 'axios';
 
 export const BACKEND_URL = 'http://localhost:3000';
-export const FIREBASE_URL = 'https://fizuhu.firebaseio.com';
+export const FIREBASE_URL = 'https://fizuhu-itf.firebaseio.com';
 
 export default {
     // post
