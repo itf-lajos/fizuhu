@@ -1,0 +1,101 @@
+@firebaseDbUrl = https://fizuhu-itf.firebaseio.com
+
+GET {{firebaseDbUrl}}/.json
+Content-Type: application/json
+
+###
+POST {{firebaseDbUrl}}/contactMessages.json
+Content-Type: application/json
+
+{
+    "date": "2019. 04. 13. 08:53:00",
+    "email": "mekk.allister@gmail.com",
+    "message": "Rest client sending",
+    "name": "Mekk Allister"
+}
+
+###
+@id = -LcKU2R5e5eNXDRgNQ_U
+@id = -LcKVXdn1dpXpT58hrR_
+@id = -LcKVxkEgAn-wE2acHLD
+GET {{firebaseDbUrl}}/contactMessages/{{id}}.json
+Content-Type: application/json
+
+###
+PUT {{firebaseDbUrl}}/contactMessages/{{id}}.json
+Content-Type: application/json
+
+{
+    "date": "2019. 04. 13. 08:53:00",
+    "email": "mekk.allister@gmail.com",
+    "message": "Rest client sending",
+    "name": "Mekk Kevin"
+}
+
+###
+PATCH {{firebaseDbUrl}}/contactMessages/{{id}}.json
+Content-Type: application/json
+
+{
+    "name": "Kevin MekkAllister" 
+}
+
+###
+DELETE {{firebaseDbUrl}}/contactMessages/{{id}}.json
+Content-Type: application/json
+
+###
+POST {{firebaseDbUrl}}/blogposts.json
+Content-Type: application/json
+
+        {
+            "id": 1,
+            "title": "Első bejegyzés",
+            "date": "2018-05-09",
+            "imageSrc":
+                "https://i0.wp.com/www.bluehost.com/blog/wp-content/uploads/2017/12/blog_blog.jpg?resize=350%2C200&ssl=1",
+            "lead":
+                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi doloribus, earum, eum aliquam porro repellendus fugiat.",
+            "category": "Általános"
+        }
+
+###
+@postId = -LcKeCTrqC6QxF5WKm1L
+PATCH {{firebaseDbUrl}}/blogposts/{{postId}}.json
+Content-Type: application/json
+
+{
+    "id": "{{postId}}"
+}
+
+###
+@apiKey = AIzaSyCnTk4xguRoE-Xg2TjWUNhDTIklM3fhENA 
+@signUpUrl = https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser
+@signInUrl = https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword
+
+POST {{signUpUrl}}?key={{apiKey}}
+Content-Type: application/json
+
+{
+    "email": "a@a.hu",
+    "password": "aaaaaa",
+    "returnSecureToken": true
+}
+
+@idToken = eyJhbGciOiJSUzI1NiIsImtpZCI6IjdkMmY5ZjNmYjgzZDYzMzc0OTdiNmY3Y2QyY2ZmNGRmYTVjMmU4YjgiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vZml6dWh1LWl0ZiIsImF1ZCI6ImZpenVodS1pdGYiLCJhdXRoX3RpbWUiOjE1NTUxNDU1MjksInVzZXJfaWQiOiJjRXBqQ2k1Y0cwVWZGT2pnZmxlYmtzR3A4cTcyIiwic3ViIjoiY0VwakNpNWNHMFVmRk9qZ2ZsZWJrc0dwOHE3MiIsImlhdCI6MTU1NTE0NTUyOSwiZXhwIjoxNTU1MTQ5MTI5LCJlbWFpbCI6ImFAYS5odSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJlbWFpbCI6WyJhQGEuaHUiXX0sInNpZ25faW5fcHJvdmlkZXIiOiJwYXNzd29yZCJ9fQ.jgi0GvMAUWRNN3wqPH8xIuwMpftq_M2ZT7VaAvx0kImETOYNceI7O_jLNLPm7TYsvNXlR2PDb-9ytK8WomGiWWq4sz9eqyarVmcD5lP4CEiCbBp0j3kgYUEaKc5CfJ4UM1q59QIfy7CYbw2cndGRUB_itSHpevrIXqibGevZZaXVxC9S7QO7JrxBifNtm6gcMiaXgfjGNVLEf5a0ESOUgqat9HwoUTlLbOsu5tOHx6HZtIFwiubw4tfPddjpCKBFJRVOOIt7RrGcaEsH_ZrmmXMp4ULxgQi7pEqRdXt3vMSGxsMbyjWybAv4MspFXY34Yiff0xzbjpRIW2ARWjYTew
+
+###
+POST {{signInUrl}}?key={{apiKey}}
+Content-Type: application/json
+
+{
+    "email": "a@a.hu",
+    "password": "aaaaaa",
+    "returnSecureToken": true
+}
+
+###
+GET {{firebaseDbUrl}}/.json?auth={{idToken}}
+
+###
+GET {{firebaseDbUrl}}/blogposts.json

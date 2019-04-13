@@ -5,7 +5,7 @@
             <div class="row mb-5">
                 <div class="col-11 mx-auto mx-sm-0">
                     <h2>{{ post.title }}</h2>
-                    <p>Horvát Zoltán, {{ post.date }}</p>
+                    <p>Horvát Zoltán, {{ post.date }}, {{ post.category }}</p>
                 </div>
             </div>
             <div class="row text-justify">

@@ -7,13 +7,16 @@ export default {
     // post
 
     GetPosts() {
-        return Axios.get(BACKEND_URL + '/blogposts').then(result => {
+        // return Axios.get(BACKEND_URL + '/blogposts').then(result => {
+        return Axios.get(FIREBASE_URL + '/blogposts.json').then(result => {
             return result.data;
         });
     },
 
     GetPost(postID) {
-        return Axios.get(BACKEND_URL + '/blogposts/' + postID).then(result => {
+        // return Axios.get(BACKEND_URL + '/blogposts/' + postID).then(result => {
+        // return Axios.get(FIREBASE_URL + '/blogposts/' + postID + '.json').then(result => {
+        return Axios.get('${FIREBASE_URL}/blogposts/${postID}.json').then(result => {
             return result.data;
         });
     },
