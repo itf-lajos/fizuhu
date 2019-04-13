@@ -9,7 +9,9 @@
                     <div class="row px-lg-5">
                         <div class="card-deck my-5">
                             <div class="row">
-                                <div class="col-12 col-lg-6 my-3" :key="post.id" v-for="post in filteredPostCollection">
+                                <div class="col-12 col-lg-6 my-3"
+                                    v-for="post in filteredPostCollection"
+                                    :key="post.id" >
                                     <BlogPostCard :post="post"></BlogPostCard>
                                 </div>
                             </div>

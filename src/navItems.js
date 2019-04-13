@@ -23,5 +23,15 @@ export default [
         name: 'Kapcsolat',
         id: 'kapcsolat',
         path: '/contact'
+    },
+    {
+        name: 'Login',
+        id: 'login',
+        path: '/login'
+    },
+    {
+        name: 'Sign Up',
+        id: 'registration',
+        path: '/registration'
     }
 ];

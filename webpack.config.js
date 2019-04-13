@@ -5,6 +5,9 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
     mode: 'development',
+    devServer: {
+        historyApiFallback: true
+    },
     entry: {
         app: './src/main.js',
         vendor: ['jquery', 'popper.js', 'bootstrap']

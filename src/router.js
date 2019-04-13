@@ -8,9 +8,12 @@ import post from './pages/post.vue';
 import contact from './pages/contact.vue';
 import survey from './pages/survey.vue';
 import statistics from './pages/statistics.vue';
+import login from './pages/login.vue';
+import registration from './pages/registration.vue';
 
 // router
 export default new VueRouter({
+    mode: "history",
     routes: [
         {
             name: 'index',
@@ -46,6 +49,16 @@ export default new VueRouter({
             name: 'statistics',
             path: '/statistics',
             component: statistics
+        },
+        {
+            name: 'login',
+            path: '/login',
+            component: login
+        },
+        {
+            name: 'registration',
+            path: '/registration',
+            component: registration
         }
     ]
 });
