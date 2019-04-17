@@ -6,14 +6,21 @@
                 <div class="card login-card mb-3">
                     <div class="card-header login-card-header text-uppercase">Bejelentkezés</div>
                         <div class="card-body">
-                            <form>
+                            <form @submit.prevent="login()">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Add meg az email címed</label>
-                                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="valami@email.com">
+                                    <input type="email" class="form-control"
+                                        id="exampleInputEmail1"
+                                        placeholder="valami@email.com"
+                                        v-model="email"
+                                    >
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Add meg a jelszavad</label>
-                                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Jelszó">
+                                    <input type="password" class="form-control"
+                                        id="exampleInputPassword1"
+                                        placeholder="Jelszó"
+                                        v-model="password">
                                     <small class="form-text"><a href="#">Elfelejtetted a jelszavad?</a></small>
 <!--                                     <div class="form-check mt-3">
                                         <input class="form-check-input" type="checkbox" id="autoSizingCheck2">
@@ -26,7 +33,9 @@
  -->                                    
                                     <div class="card-footer">
                                     </div>
-                                    <a class="btn btn-login btn-lg btn-block text-uppercase" href="index.html" role="button">Bejelentkezés</a>
+                                    <button class="btn btn-login btn-lg btn-block text-uppercase" type="submit">
+                                        Bejelentkezés
+                                    </button>
                                     <p class="pt-3 small"><a href="regisztracio.html">Még nem regisztáltál?</a></p>
                                 </div>
                             </form>
@@ -39,7 +48,28 @@
 </template>
 
 <script>
+import DataService from "../DataService";
 export default {
-    name: "login"
+    name: "login",
+    data() {
+        return {
+            email: "",
+            password: ""
+        };
+    },
+    methods: {
+        login() {
+            DataService.SignIn({ 
+                email: this.email,
+                password: this.password
+            })
+            .then(r => {
+                this.$root.setUserMutation(r);
+                // this.$root.$data.user = Object.assign({}, r);
+                this.$router.push({ name: "profil" });
+                // debugger;
+            });
+        }
+    }
 };
 </script>
