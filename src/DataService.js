@@ -8,7 +8,26 @@ const signUpUrl = `https://www.googleapis.com/identitytoolkit/v3/relyingparty/si
 const signInUrl = `https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=${apiKey}`;
 
 export default {
-    SignIn({ email, password }) {
+    Auth({ email, password, isSignUp }) {
+        return Axios.post(isSignUp ? signUpUrl : signInUrl, {
+            email: email,
+            password: password,
+            returnSecureToken: true
+        })
+        .then(r => r.data)
+        .then(r => {
+            // adatmegosztás - a window folyamatosan jelen van a weblapon
+            // window.user = Object.assign({}, r);
+            console.log('loginapi:', r);
+            return r;
+        })
+        .catch(err => {
+            console.warn(err);
+            // A lekezelt hibaüzenet továbbadása a registration-ba
+            return Promise.reject(err.response.data.error.message);
+        });
+    },
+/*     SignIn({ email, password }) {
         return Axios.post(signInUrl, {
             "email": email,
             "password": password,
@@ -42,6 +61,7 @@ export default {
             return Promise.reject(err.response.data.error.message);
         });
     },
+ */   
     // post
     GetPosts() {
         // return Axios.get(BACKEND_URL + '/blogposts').then(result => {

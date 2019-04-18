@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import DataService from "../DataService";
+//import DataService from "../DataService";
 export default {
     name: "registration",
     data() {
@@ -69,10 +69,15 @@ export default {
             if(this.password !== this.password2) {
                 this.alerts.push("A két jelszó nem egyezik, kérlek javítsd!");
             }
-            DataService.SignUp({email: this.email, password: this.password})
+            this.$root
+                .signUpAction({
+                    email: this.email,
+                    password: this.password
+            })
+            // DataService.SignUp({email: this.email, password: this.password})
             .then(
                 r => {
-                    this.$root.setUserMutation(r);
+                    //this.$root.setUserMutation(r);
                     // this.$root.$data.user = Object.assign({}, r);
                     this.$router.push({ name: "profil" });
                     // debugger;

@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import DataService from "../DataService";
+//import DataService from "../DataService";
 export default {
     name: "login",
     data() {
@@ -59,12 +59,17 @@ export default {
     },
     methods: {
         login() {
-            DataService.SignIn({ 
+            this.$root
+            .signInAction({ 
                 email: this.email,
                 password: this.password
             })
-            .then(r => {
-                this.$root.setUserMutation(r);
+/*             DataService.SignIn({ 
+                email: this.email,
+                password: this.password
+            })
+ */            .then(r => {
+                //this.$root.setUserMutation(r);
                 // this.$root.$data.user = Object.assign({}, r);
                 this.$router.push({ name: "profil" });
                 // debugger;
