@@ -54,6 +54,7 @@
 
 <script>
 //import DataService from "../DataService";
+//import store from '../store';
 export default {
     name: "registration",
     data() {
@@ -69,8 +70,8 @@ export default {
             if(this.password !== this.password2) {
                 this.alerts.push("A két jelszó nem egyezik, kérlek javítsd!");
             }
-            this.$root
-                .signUpAction({
+            // this.$root
+            this.$store.dispatch("signUpAction", {
                     email: this.email,
                     password: this.password
             })

@@ -7,6 +7,7 @@ const apiKey = "AIzaSyCnTk4xguRoE-Xg2TjWUNhDTIklM3fhENA";
 const signUpUrl = `https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=${apiKey}`;
 const signInUrl = `https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=${apiKey}`;
 
+import store from "./store";
 export default {
     Auth({ email, password, isSignUp }) {
         return Axios.post(isSignUp ? signUpUrl : signInUrl, {

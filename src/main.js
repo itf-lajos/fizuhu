@@ -7,14 +7,16 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import App from './App.vue';
 import router from './router';
-import DataService from "./DataService";
+//import DataService from "./DataService";
+import store from "./store";
 
 // init
 Vue.use(VueRouter);
 new Vue({
     el: '#app',
     router,
-    data() {
+    store,
+/*     data() {
         return {
             user: {
                 kind: '',
@@ -26,18 +28,21 @@ new Vue({
             }
         }
     },
-    methods: {
+ */    
+/*     methods: {
         signInAction(credentialsPayload) {
             return this.authAction({
-                email: credentialsPayload.email,
-                password: credentialsPayload.password,
+                // email: credentialsPayload.email,
+                // password: credentialsPayload.password,
+                ...credentialsPayload,
                 isSignUp: false
             });
         },
         signUpAction(credentialsPayload) {
             return this.authAction({
-                email: credentialsPayload.email,
-                password: credentialsPayload.password,
+                // email: credentialsPayload.email,
+                // password: credentialsPayload.password,
+                ...credentialsPayload,
                 isSignUp: true
             });
         },
@@ -48,5 +53,6 @@ new Vue({
             this.user = Object.assign({}, userPayload);
         }
     },
+ */   
     render: h => h(App)
 });

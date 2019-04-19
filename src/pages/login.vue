@@ -48,6 +48,7 @@
 </template>
 
 <script>
+//import store from "../store";
 //import DataService from "../DataService";
 export default {
     name: "login",
@@ -57,10 +58,14 @@ export default {
             password: ""
         };
     },
+/*     mounted() {
+        console.log(store);
+    },
+ */    
     methods: {
         login() {
-            this.$root
-            .signInAction({ 
+            // this.$root
+            this.$store.dispatch("signInAction", {
                 email: this.email,
                 password: this.password
             })

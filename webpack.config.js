@@ -34,7 +34,14 @@ module.exports = {
             },
             {
                 test: /\.js$/,
-                use: ['babel-loader']
+                // use: ['babel-loader']
+                exclude: /(node_modules|bower_components)/,
+                use: {
+                    loader: "babel-loader",
+                    options: {
+                        presets: ["es2015", "stage-2"]
+                    }
+                }
             },
             {
                 test: /\.css$/,
