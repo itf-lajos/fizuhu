@@ -1,4 +1,4 @@
-import Axios from 'axios';
+/* import Axios from 'axios';
 
 export const BACKEND_URL = 'http://localhost:3000';
 export const FIREBASE_URL = 'https://fizuhu-itf.firebaseio.com';
@@ -6,10 +6,10 @@ export const FIREBASE_URL = 'https://fizuhu-itf.firebaseio.com';
 const apiKey = "AIzaSyCnTk4xguRoE-Xg2TjWUNhDTIklM3fhENA";
 const signUpUrl = `https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=${apiKey}`;
 const signInUrl = `https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=${apiKey}`;
-
+ */
 import store from "./store";
 export default {
-    Auth({ email, password, isSignUp }) {
+/*     Auth({ email, password, isSignUp }) {
         return Axios.post(isSignUp ? signUpUrl : signInUrl, {
             email: email,
             password: password,
@@ -28,7 +28,7 @@ export default {
             return Promise.reject(err.response.data.error.message);
         });
     },
-/*     SignIn({ email, password }) {
+ *//*     SignIn({ email, password }) {
         return Axios.post(signInUrl, {
             "email": email,
             "password": password,
