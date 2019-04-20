@@ -3,6 +3,15 @@ import Vuex from "vuex";
 
 import Axios from 'axios';
 const apiKey = "AIzaSyCnTk4xguRoE-Xg2TjWUNhDTIklM3fhENA";
+const emptyUserObject = {
+    kind: '',
+    idToken: '',
+    email: '',
+    refreshToken: '',
+    expiresIn: '',
+    localId: '',
+    expirationDate: ''
+};
 
 Vue.use(Vuex);
 
@@ -12,10 +21,13 @@ export const TYPES = {
     actions: {
         signIn: "signIn",
         signUp: "signUp",        
-        auth: "auth"
+        auth: "auth",
+        loadPosts: "loadPosts"
     },
     mutations: {
-        setUser: "setUser"
+        setUser: "setUser",
+        deleteUser: "deleteUser",
+        setPosts: "setPosts"
     }
 };
 
@@ -26,14 +38,8 @@ const state = {
         firebase: 'https://fizuhu-itf.firebaseio.com',
         backend: 'http://localhost:3000'
     },
-    user: {
-        kind: '',
-        idToken: '',
-        email: '',
-        refreshToken: '',
-        expiresIn: '',
-        localId: ''
-    }
+    user: { ...emptyUserObject, idToken: localStorage.getItem("idToken") },
+    posts: []
 }
 
 const actions = {
@@ -62,22 +68,46 @@ const actions = {
         })
         .catch(err => {
             console.warn(err);
+            commit(TYPES.mutations.deleteUser);
             return Promise.reject(err.response.data.error.message);
         });
         // }).then(r=> vuexContext.commit(TYPES.mutations.setUser, r));
+    },
+    [TYPES.actions.loadPosts]({ commit, state }) {
+        return Axios.get(`${state.url.firebase}/blogposts.json?auth=${state.user.idToken}`)
+        .then(r => r.data)    
+        .then(r => {
+                commit(TYPES.mutations.setPosts, r);
+                return r;
+            }
+        );
     }
 };
 
 const mutations = {
     [TYPES.mutations.setUser](state, userPayload) {
         state.user = { ...userPayload };
+        localStorage.setItem("idToken", state.user.idToken);
+    },
+    [TYPES.mutations.deleteUser]() {
+        state.user = { ...emptyUserObject };
+        localStorage.removeItem("idToken");
+    },
+    [TYPES.mutations.setPosts](state, fbPost) {
+        // Firebase-ből másképp jönnek az adatok, mint ahogy nekünk kellene
+        state.posts = Object.values(fbPost);
     }
+};
+
+const getters = {
+    isLoggedIn: state => Boolean(state.user.idToken)
 };
 
 export default new Vuex.Store({
     state,
     actions,
-    mutations
+    mutations,
+    getters
 })
 
 /* let store = {
