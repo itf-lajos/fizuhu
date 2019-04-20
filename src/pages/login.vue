@@ -50,6 +50,7 @@
 <script>
 //import store from "../store";
 //import DataService from "../DataService";
+import { TYPES } from "../store";
 export default {
     name: "login",
     data() {
@@ -65,7 +66,7 @@ export default {
     methods: {
         login() {
             // this.$root
-            this.$store.dispatch("signInAction", {
+            this.$store.dispatch(TYPES.actions.signIn, {
                 email: this.email,
                 password: this.password
             })

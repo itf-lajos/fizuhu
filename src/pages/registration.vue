@@ -55,6 +55,7 @@
 <script>
 //import DataService from "../DataService";
 //import store from '../store';
+import { TYPES } from "../store";
 export default {
     name: "registration",
     data() {
@@ -71,7 +72,7 @@ export default {
                 this.alerts.push("A két jelszó nem egyezik, kérlek javítsd!");
             }
             // this.$root
-            this.$store.dispatch("signUpAction", {
+            this.$store.dispatch(TYPES.actions.signUp, {
                     email: this.email,
                     password: this.password
             })
