@@ -71,17 +71,17 @@ export default {
         });
     },
  */
-    GetPost(postID) {
+/*     GetPost(postID) {
         // return Axios.get(BACKEND_URL + '/blogposts/' + postID).then(result => {
         // return Axios.get(FIREBASE_URL + '/blogposts/' + postID + '.json').then(result => {
         return Axios.get('${FIREBASE_URL}/blogposts/${postID}.json').then(result => {
             return result.data;
         });
-    },
+    }, */
 
     // contact message
 
-    PostContactMessage(data) {
+/*     PostContactMessage(data) {
         return Axios.post(FIREBASE_URL + '/contactMessages.json', data)
             .then(() => {
                 return true;
@@ -91,9 +91,9 @@ export default {
                 return false;
             });
     },
-
+ */
     // survey
-
+    
     GetSurveyData() {
         return Axios.get(FIREBASE_URL + '/surveyResponses.json').then(result => {
             return result.data;

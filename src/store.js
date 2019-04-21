@@ -22,12 +22,17 @@ export const TYPES = {
         signIn: "signIn",
         signUp: "signUp",        
         auth: "auth",
-        loadPosts: "loadPosts"
+        loadPosts: "loadPosts",
+        postContactMessage: "postContactMessage"
     },
     mutations: {
         setUser: "setUser",
         deleteUser: "deleteUser",
         setPosts: "setPosts"
+    },
+    getters: {
+        isLoggedIn: "isLoggedIn",
+        getPost: "getPost"
     }
 };
 
@@ -81,6 +86,15 @@ const actions = {
                 return r;
             }
         );
+    },
+    [TYPES.actions.postContactMessage]({ state }, contactPayLoad) {
+        return Axios.post(
+            `${state.url.firebase}/contactMessages.json?auth=${state.user.idToken}`, contactPayLoad)
+            .catch(error => {
+                console.warn('store postContactMsg', error);
+                return Promise.reject();
+            }
+        );
     }
 };
 
@@ -101,7 +115,10 @@ const mutations = {
 };
 
 const getters = {
-    isLoggedIn: state => Boolean(state.user.idToken)
+    [TYPES.getters.isLoggedIn]: state => Boolean(state.user.idToken),
+    [TYPES.getters.getPost]: state => postId => {
+        return state.posts.find(p => p.id === postId);
+    }
 };
 
 export default new Vuex.Store({

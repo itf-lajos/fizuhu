@@ -1,6 +1,5 @@
 <template>
     <div>
-
         <div class="container my-5 pt-5">
             <div class="row mb-5">
                 <div class="col-11 mx-auto mx-sm-0">
@@ -94,25 +93,36 @@
                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                 </div>
             </form> -->
-        </div>
     </div>
-
 </template>
 
 <script>
 import DataService from '../DataService';
+import { mapGetters } from 'vuex';
+import {TYPES} from "../store";
 
 export default {
-    data() {
+/*     data() {
         return {
             post: null
         };
     },
-
-    created() {
-        DataService.GetPost(this.$route.params.postID).then(post => {
+ */    
+    computed: {
+        ...mapGetters({ loadPost: TYPES.getters.getPost }),
+        post() {
+            return this.loadPost(this.$route.params.postID);
+        }
+    }
+/*     created() {
+        this.$store.getters.getPost(
+            this.$route.params.postID).then(post => {
+                this.post = post;
+            }
+        );
+ *//*         DataService.GetPost(this.$route.params.postID).then(post => {
             this.post = post;
         });
-    }
+ */    
 };
 </script>

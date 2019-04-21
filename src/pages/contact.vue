@@ -48,6 +48,8 @@
 
 <script>
 import DataService from '../DataService';
+import { mapActions } from 'vuex';
+import { TYPES } from "../store";
 
 export default {
     name: 'concact',
@@ -64,6 +66,7 @@ export default {
         };
     },
     methods: {
+        ...mapActions({ savePost: TYPES.actions.postContactMessage }),
         Submit() {
             this.HideAllAlert();
 
@@ -77,18 +80,12 @@ export default {
             const now = new Date();
 
             // POST
-            DataService.PostContactMessage({
+            this.savePost({
                 name: this.name,
                 email: this.email,
                 message: this.message,
                 time: now.toLocaleDateString() + now.toLocaleTimeString()
-            }).then(success => {
-                if (success) {
-                    this.ShowSuccess();
-                } else {
-                    this.ShowFail();
-                }
-            });
+            }).then(this.ShowSuccess, this.ShowFail);
         },
         HideAllAlert() {
             this.alerts.warning = false;
