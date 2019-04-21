@@ -16,7 +16,7 @@
 
 <script>
 // data
-import DataService from '../DataService';
+//import DataService from '../DataService';
 
 // chart
 import DoughnutChart from '../components/DoughnutChart.vue';

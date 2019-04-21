@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import DataService from '../DataService';
+//import DataService from '../DataService';
 import { mapActions } from 'vuex';
 import { TYPES } from "../store";
 

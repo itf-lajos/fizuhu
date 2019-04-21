@@ -77,7 +77,7 @@
 <script>
 import BlogPostCard from '../components/BlogPostCard.vue';
 import BlogPostCategories from '../components/BlogPostCategories.vue';
-import DataService from '../DataService';
+//import DataService from '../DataService';
 import { TYPES } from '../store';
 
 export default {
@@ -94,11 +94,13 @@ export default {
     },
 
     created() {
-        if(this.$store.getters.isLoggedIn) {
+        return this.$store.dispatch(TYPES.actions.loadPosts);
+/*         if(this.$store.getters.isLoggedIn) {
             return this.$store.dispatch(TYPES.actions.loadPosts);
         } else {
             this.$router.push({ name: "login" });
         }
+ */
 /*         DataService.GetPosts().then(posts => {
             this.postCollection = posts;
         });

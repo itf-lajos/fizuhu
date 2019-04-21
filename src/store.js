@@ -15,7 +15,7 @@ const emptyUserObject = {
 
 Vue.use(Vuex);
 
-import DataService from "./DataService";
+//import DataService from "./DataService";
 
 export const TYPES = {
     actions: {
