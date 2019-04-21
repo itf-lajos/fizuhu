@@ -86,6 +86,7 @@ export default {
                 message: this.message,
                 time: now.toLocaleDateString() + now.toLocaleTimeString()
             }).then(this.ShowSuccess, this.ShowFail);
+            // a függvény referenciákat kell megadni, ezért nincs a ()
         },
         HideAllAlert() {
             this.alerts.warning = false;

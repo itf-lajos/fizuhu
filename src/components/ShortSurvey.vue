@@ -77,7 +77,9 @@
 </template>
 
 <script>
-import DataService from '../DataService';
+//import DataService from '../DataService';
+import { mapActions } from 'vuex';
+import { TYPES } from '../store';
 
 export default {
     data() {
@@ -96,6 +98,7 @@ export default {
         };
     },
     methods: {
+        ...mapActions({ savePost: TYPES.actions.postSurveyResponse }),
         Submit(event) {
             const missingValues = Object.values(this.fields).filter(value => {
                 return !value;
@@ -104,15 +107,8 @@ export default {
             if (missingValues.length == 0) {
                 // form submit prevent
                 event.preventDefault();
-                
                 // POST
-                DataService.PostSurveyResponse(this.fields).then(success => {
-                    if (success) {
-                        this.ShowThanksAlert();
-                    } else {
-                        this.ShowFailAlert();
-                    }
-                });
+                this.savePost(this.fields).then(this.ShowThanksAlert, this.ShowFailAlert);
             }
         },
         HideAllAlert() {

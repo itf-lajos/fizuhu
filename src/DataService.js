@@ -100,7 +100,7 @@ export default {
         });
     },
 
-    PostSurveyResponse(data) {
+/*     PostSurveyResponse(data) {
         return Axios.post(FIREBASE_URL + '/surveyResponses.json', data)
             .then(() => {
                 return true;
@@ -110,4 +110,5 @@ export default {
                 return false;
             });
     }
+ */
 };

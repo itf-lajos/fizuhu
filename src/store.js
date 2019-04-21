@@ -23,7 +23,8 @@ export const TYPES = {
         signUp: "signUp",        
         auth: "auth",
         loadPosts: "loadPosts",
-        postContactMessage: "postContactMessage"
+        postContactMessage: "postContactMessage",
+        postSurveyResponse: "postSurveyResponse"
     },
     mutations: {
         setUser: "setUser",
@@ -93,6 +94,15 @@ const actions = {
             .catch(error => {
                 console.warn('store postContactMsg', error);
                 return Promise.reject();
+            }
+        );
+    },
+    [TYPES.actions.postSurveyResponse]({ state }, surveyPayLoad) {
+        return Axios.post(
+            `${state.url.firebase}/surveyResponses.json?auth=${state.user.idToken}`, surveyPayLoad)
+            .catch(error => {
+                console.warn('store postSurvey error: ', error);
+                return false;
             }
         );
     }
