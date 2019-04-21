@@ -39,8 +39,8 @@ const state = {
         backend: 'http://localhost:3000'
     },
     user: { ...emptyUserObject, idToken: localStorage.getItem("idToken") },
-    posts: []
-}
+    posts: JSON.parse(localStorage.getItem("posts")) || []
+};
 
 const actions = {
     [TYPES.actions.signIn]({ dispatch }, credentialsPayload) {
@@ -96,6 +96,7 @@ const mutations = {
     [TYPES.mutations.setPosts](state, fbPost) {
         // Firebase-ből másképp jönnek az adatok, mint ahogy nekünk kellene
         state.posts = Object.values(fbPost);
+        localStorage.setItem("posts", JSON.stringify(state.posts));
     }
 };
 
