@@ -94,12 +94,12 @@ export default {
  */
     // survey
     
-    GetSurveyData() {
+/*     GetSurveyData() {
         return Axios.get(FIREBASE_URL + '/surveyResponses.json').then(result => {
             return result.data;
         });
     },
-
+ */
 /*     PostSurveyResponse(data) {
         return Axios.post(FIREBASE_URL + '/surveyResponses.json', data)
             .then(() => {

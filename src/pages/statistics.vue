@@ -21,6 +21,8 @@ import DataService from '../DataService';
 // chart
 import DoughnutChart from '../components/DoughnutChart.vue';
 import BarChart from '../components/BarChart.vue';
+import { mapActions } from 'vuex';
+import { TYPES } from '../store';
 
 export default {
     components: {
@@ -118,11 +120,11 @@ export default {
                     ]
                 }
             };
-        }
+        },
+        ...mapActions({ loadData: TYPES.actions.getSurveyData })
     },
-
     created() {
-        DataService.GetSurveyData().then(result => {
+        this.loadData.then(result => {
             this.rawData = Object.values(result);
         });
     }
