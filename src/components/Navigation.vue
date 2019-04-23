@@ -16,6 +16,10 @@
             {{ item.name }}
           </router-link>
         </li>
+        <li class="nav-item px-3"
+          v-if="this.isLoggedIn">
+          <a class="nav-link" href="#" @click.prevent="logOut">Logout</a>
+        </li>
 
         <!-- <li class="nav-item px-3">
           <a class="nav-link" href="kedvenc-stat.html">
@@ -51,13 +55,88 @@
 </template>
 
 <script>
-import navItems from '../navItems';
+import { mapGetters, mapMutations } from 'vuex';
+import { TYPES } from '../store';
+// import navItems from '../navItems';
 
 export default {
-    data() {
-        return {
-            itemCollection: navItems
-        };
+  data() {
+    return {
+      baseNav: [
+        {
+          name: 'Főoldal',
+          id: 'index',
+          path: '/'
+        },
+        {
+          name: 'Blog',
+          id: 'blog',
+          path: '/blog'
+        },
+        {
+          name: 'Kérdőív',
+          id: 'survey',
+          path: '/survey'
+        },
+        {
+          name: 'Fizutérkép',
+          id: 'statistics',
+          path: '/statistics'
+        },
+        {
+          name: 'Kapcsolat',
+          id: 'kapcsolat',
+          path: '/contact'
+        }
+/*         {
+          name: 'Login',
+          id: 'login',
+          path: '/login'
+        },
+        {
+          name: 'Sign Up',
+          id: 'registration',
+          path: '/registration'
+        }
+ */      
+      ]
+    };
+  },
+  methods: {
+    ...mapMutations({ deleteUser: TYPES.mutations.deleteUser }),
+    logOut() {
+      this.deleteUser();
+      this.$router.push("/");
     }
+  },
+  computed: {
+    ...mapGetters({ isLoggedIn: TYPES.getters.isLoggedIn }),
+    itemCollection() {
+      if(this.isLoggedIn) {
+        return [
+          ...this.baseNav,
+          {
+            name: 'Profile',
+            id: 'profile',
+            path: '/profile'
+          }
+        ];
+      } else {
+        return [
+          ...this.baseNav,
+          {
+            name: 'Login',
+            id: 'login',
+            path: '/login'
+          },
+          {
+            name: 'Sign Up',
+            id: 'registration',
+            path: '/registration'
+          }
+        ];
+      }
+    }
+  }
 };
 </script>
