@@ -45,7 +45,16 @@ const state = {
         firebase: 'https://fizuhu-itf.firebaseio.com',
         backend: 'http://localhost:3000'
     },
-    user: { ...emptyUserObject, idToken: localStorage.getItem("idToken") },
+/*     user: Object.assign(
+        {}, 
+        emptyUserObject, 
+        JSON.parse(localStorage.getItem("user"))     // idToken
+    ),
+ */
+    user: { 
+        ...emptyUserObject, 
+        ...JSON.parse(localStorage.getItem("user"))     // idToken
+    },
     posts: JSON.parse(localStorage.getItem("posts")) || []
 };
 
@@ -124,11 +133,11 @@ const actions = {
 const mutations = {
     [TYPES.mutations.setUser](state, userPayload) {
         state.user = { ...userPayload };
-        localStorage.setItem("idToken", state.user.idToken);
+        localStorage.setItem("user", JSON.stringify(state.user));
     },
     [TYPES.mutations.deleteUser]() {
         state.user = { ...emptyUserObject };
-        localStorage.removeItem("idToken");
+        localStorage.removeItem("user");
     },
     [TYPES.mutations.setPosts](state, fbPost) {
         // Firebase-ből másképp jönnek az adatok, mint ahogy nekünk kellene

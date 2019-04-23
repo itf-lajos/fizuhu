@@ -81,7 +81,7 @@ export default {
                 r => {
                     //this.$root.setUserMutation(r);
                     // this.$root.$data.user = Object.assign({}, r);
-                    this.$router.push({ name: "profil" });
+                    this.$router.push({ name: "profile" });
                     // debugger;
                 })
             .catch(

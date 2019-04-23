@@ -7,9 +7,13 @@
                     Összes
                 </router-link>
             </li>
-            <li class="list-group-item"
-                v-for="category in categoryCollection"
+<!--            <li class="list-group-item"
+                 v-for="category in categoryCollection"
                 :key="category.id">
+ -->                
+            <li class="list-group-item"
+                v-for="(category, idx) in categoryCollection"
+                :key="idx">
                 <router-link :to="{ name: 'blogCategory', params: { categoryName: category }}">
                     {{ category }}
                 </router-link>

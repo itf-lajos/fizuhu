@@ -8,7 +8,7 @@
 <script>
 //import store from "../store";
 export default {
-    name: "profil",
+    name: "profile",
     computed: {
         user() {
             return this.$store.state.user || {};

@@ -108,7 +108,8 @@ export default {
     },
 
     computed: {
-        postCollection() {
+//        ...mapState({ postCollection: state.posts }),
+         postCollection() {
             return this.$store.state.posts;
         },
         filteredPostCollection() {

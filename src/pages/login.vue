@@ -77,7 +77,7 @@ export default {
  */            .then(r => {
                 //this.$root.setUserMutation(r);
                 // this.$root.$data.user = Object.assign({}, r);
-                this.$router.push({ name: "profil" });
+                this.$router.push({ name: "profile" });
                 // debugger;
             });
         }
